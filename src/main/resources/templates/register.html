@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+
+    <title>Please Register</title>
+
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"/>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#createAccount").click(function(e){
+                    var pwd = $("#password").val();
+                    var confirmedPwd = $("#confirmPassword").val();
+
+                    if(pwd == confirmedPwd)
+                    {
+                        $("#frmCreateAccount").submit();
+                    }
+                    else
+                    {
+                        alert("Passwords do not match");
+                        e.preventDefault();
+
+                    }
+
+            });
+
+        });
+
+
+    </script>
+
+    <style type="text/css">
+        .error{
+            color:red;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <form class="form-horizontal" th:action="@{/register}" method="post" id="frmCreateAccount" th:object="${user}">
+            <fieldset>
+                <legend>Please Enter Registration Information</legend>
+                <div class="error" th:text="${errorMsg}"></div>
+
+                <div class="form-group">
+            <label for="emailAddress" class="control-label col-xs-12 col-sm-3">
+            Email Address:
+            </label>
+                    <div class="col-xs-12 col-sm-9">
+                <input class="form-control" type="email" th:field="${user.email}" id="emailAddress"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                <label for="password" class="control-label col-xs-12 col-sm-3">
+                Password:
+                </label>
+                    <div class="col-xs-12 col-sm-9">
+                    <input class="form-control" type="password" th:field="${user.password}" id="password"/>
+                </div>
+                </div>
+                <div class="form-group">
+                <label for="confirmPassword" class="control-label col-xs-12 col-sm-3">
+            Confirm the Password:
+                </label>
+                    <div class="col-xs-12 col-sm-9">
+                    <input class="form-control" type="password" id="confirmPassword"/>
+                </div>
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">
+            <button class="btn btn-primary" id="createAccount">Create Account</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</body>
+
+
+</html>
